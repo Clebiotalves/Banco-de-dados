@@ -36,7 +36,7 @@ create table product (
         id_payment int,
         typePayment enum('Boleto','Cartão','Dois cartões'),
         limitAvailable float,
-        primary key(idClient, id_paymnet)
+        primary key(idClient, idPaymnet)
 );
  
 -- criar tabela pedido
@@ -47,7 +47,8 @@ create table orders(
         orderDescription varchar(255),
         sendValue float default 10,  
         paymentcash bool default false,
-        constraint fk_ordes_client foreign key (idOrderClient) references clients(idClient)
+        constraint fk_ordes_client foreign key (idOrderClient) references clients(idClient) 
+                on update cascade
 );
 
 -- criar tabela estoque
